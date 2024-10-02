@@ -21,9 +21,6 @@ const Navbar = () => {
             <li>
               <Link to='/login' >Login</Link>
             </li>
-            <li>
-              <Link to='/register'>Registration</Link>
-            </li>
           </ul>
   
           <div className='dropdown dropdown-end z-50'>
