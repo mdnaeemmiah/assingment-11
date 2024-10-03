@@ -1,9 +1,10 @@
+import Books from "../Components/Home/Books";
 
 
 const AllBooks = () => {
     return (
         <div>
-            <h2>all Books</h2>
+            <Books></Books>
         </div>
     );
 };
