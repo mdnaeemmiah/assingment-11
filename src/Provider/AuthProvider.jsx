@@ -13,7 +13,11 @@ import {
 import axios from 'axios'
 import auth from '../firebase/firebase.config'
 export const AuthContext = createContext(null)
+import { GithubAuthProvider } from "firebase/auth";
 const googleProvider = new GoogleAuthProvider()
+
+
+const provider = new GithubAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
@@ -32,6 +36,11 @@ const AuthProvider = ({ children }) => {
   const signInWithGoogle = () => {
     setLoading(true)
     return signInWithPopup(auth, googleProvider)
+  }
+
+  const singInWithGithub=()=>{
+    setLoading(true)
+    return signInWithPopup(auth,provider)
   }
 
   const resetPassword = email => {
@@ -87,6 +96,7 @@ const AuthProvider = ({ children }) => {
     resetPassword,
     logOut,
     updateUserProfile,
+    singInWithGithub,
   }
 
   return (

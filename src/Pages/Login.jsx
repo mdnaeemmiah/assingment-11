@@ -4,12 +4,13 @@ import useAuth from '../hooks/useAuth'
 import { useState } from 'react'
 import { TbFidgetSpinner } from 'react-icons/tb'
 import toast from 'react-hot-toast'
+import { FaGithub } from 'react-icons/fa'
 
 const Login = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const from = location?.state || '/'
-    const { signInWithGoogle, signIn, loading, setLoading, resetPassword } =
+    const { signInWithGoogle, signIn, loading, setLoading, resetPassword ,singInWithGithub} =
         useAuth()
     const [email, setEmail] = useState('')
 
@@ -52,7 +53,19 @@ const Login = () => {
             await signInWithGoogle()
 
             navigate(from)
-            toast.success('Signup Successful')
+            toast.success('Sign up Successful')
+        } catch (err) {
+            console.log(err)
+            toast.error(err.message)
+        }
+    }
+
+    const handleSingInWithGithub =async()=>{
+        try {
+            await singInWithGithub()
+
+            navigate(from)
+            toast.success('Sign up Successful')
         } catch (err) {
             console.log(err)
             toast.error(err.message)
@@ -60,7 +73,7 @@ const Login = () => {
     }
 
     return (
-        <div className='flex justify-center items-center min-h-screen'>
+        <div className='flex justify-center items-center min-h-screen mt-8'>
             <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
                 <div className='mb-8 text-center'>
                     <h1 className='my-3 text-4xl font-bold'>Log In</h1>
@@ -143,6 +156,14 @@ const Login = () => {
                     <FcGoogle size={32} />
 
                     <p>Continue with Google</p>
+                </button>
+                <button
+                    disabled={loading}
+                    onClick={handleSingInWithGithub}
+                    className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
+                    <FaGithub size={32} />
+
+                    <p>Continue with Github</p>
                 </button>
                 <p className='px-6 text-sm text-center text-gray-400'>
                     Don&apos;t have an account yet?{' '}
