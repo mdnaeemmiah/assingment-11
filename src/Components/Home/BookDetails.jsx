@@ -5,13 +5,21 @@ import Container from '../Share/Container'
 import Heading from './Heading'
 import LoadingSpinner from './LoadingSpinner'
 import useAxiosCommon from '../../hooks/useAxiosCommon'
+import { useState } from 'react'
+import UpdateRoomModal from '../modal/UpdatedBookModal'
+import { Helmet } from 'react-helmet-async'
 
 const RoomDetails = () => {
   const { id } = useParams()
   const axiosCommon = useAxiosCommon()
+  const [isOpen, setIsOpen] = useState(false)
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  const closeModal = () => {
+    setIsOpen(false)
+  }
 
   const {
-    data: room = {},
+    data: book = {},
     isLoading,
     refetch,
   } = useQuery({
@@ -23,29 +31,33 @@ const RoomDetails = () => {
   })
 
   if (isLoading) return <LoadingSpinner />
-  console.log(room)
+  console.log(book)
   return (
+    
     <Container>
-     
-      {room && (
+       <Helmet>
+        <title>Book Details</title>
+      </Helmet>
+
+      {book && (
         <div className='max-w-screen-lg mx-auto'>
           {/* Header */}
-          <div className='flex flex-col gap-6'>
+          <div className='flex flex-col gap-6 mt-5'>
             <div>
-              <Heading title={room.title} subtitle={room.location} />
+              <Heading title={book.title} subtitle={book.location} />
               <div className='w-full md:h-[60vh] overflow-hidden rounded-xl'>
                 <img
                   className='object-cover w-full'
-                  src={room.image}
+                  src={book.image}
                   alt='header image'
                 />
               </div>
             </div>
           </div>
-          <div className='grid grid-cols-1 md:grid-cols-7 md:gap-10 mt-6'>
-            {/* Room Info */}
+          <div className='grid grid-cols-1  md:gap-10 mt-6'>
+            {/* book Info */}
             <div className='col-span-4 flex flex-col gap-8'>
-              <div className='flex flex-col gap-2'>
+              <div className='flex  md:justify-between  gap-2'>
                 <div
                   className='
                 text-xl 
@@ -56,46 +68,41 @@ const RoomDetails = () => {
                 gap-2
               '
                 >
-                  <div>Hosted by {room?.host?.name}</div>
-
-                  <img
-                    className='rounded-full'
-                    height='30'
-                    width='30'
-                    alt='Avatar'
-                    referrerPolicy='no-referrer'
-                    src={room?.host?.image}
-                  />
+                  <div>Author Name {book?.author_name}</div>
                 </div>
                 <div
-                  className='
-                flex 
-                flex-row 
-                items-center 
-                gap-4 
-                font-light
-                text-neutral-500
-              '
-                >
-                  <div>{room?.guests} guests</div>
-                  <div>{room?.bedrooms} rooms</div>
-                  <div>{room?.bathrooms} bathrooms</div>
+                  className='flex flex-row  items-center   gap-4 font-light text-neutral-500'>
+                  <div>{book?.rating} Rating</div>
+                  <div>{book?.quantity} Quantity</div>
                 </div>
               </div>
 
               <hr />
               <div
-                className='
-          text-lg font-light text-neutral-500'
-              >
-                {room?.description}
+                className='  text-lg font-light text-neutral-500 ' >
+                {book?.description}
               </div>
               <hr />
             </div>
-
-            <div className='md:col-span-3 order-first md:order-last mb-10'>
-              {/* RoomReservation */}
-              {/* <RoomReservation refetch={refetch} room={room} /> */}
+            {/* aslikdhfksdj */}
+            <div className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+              <button
+                onClick={() => setIsEditModalOpen(true)}
+                className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+              >
+                <span
+                  aria-hidden='true'
+                  className='absolute inset-0  rounded-full'
+                ></span>
+                <span className='relative text-2xl bg-orange-200 p-2 rounded-lg'>Borrow Book</span>
+              </button>
+              {/* Update Modal */}
+              <UpdateRoomModal
+                isOpen={isEditModalOpen}
+                setIsEditModalOpen={setIsEditModalOpen}
+                book={book}
+                refetch={refetch}
+              />
             </div>
           </div>
         </div>

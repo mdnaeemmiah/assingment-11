@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
 import avatarImg from '../assets/placeholder.jpg'
+import logo from '../assets/logo.library.png'
 
 
 const Navbar = () => {
   const { user, logOut } = useAuth()
 
   return (
-    <div className='navbar bg-base-100 shadow-sm container px-4 mx-auto'>
+    <div className='navbar bg-base-200 shadow-sm container px-4 mx-auto '>
       <div className='flex-1'>
         <div className='flex gap-2 items-center'>
-          <img className='w-auto h-7' src='' alt='' />
+          <img className='w-auto h-8' src={logo} alt='' />
           <span className='font-bold'>Library Management System</span>
         </div>
       </div>
@@ -53,10 +54,14 @@ const Navbar = () => {
               <Link to='/all-books'>All Books</Link>
             </li>
             <li>
+              <Link to='/listing-books'>My Listings Books</Link>
+            </li>
+            <li>
               <Link to='/borrowed' >Borrowed Books</Link>
             </li>
             <li className='mt-2'>
               <button
+                
                 onClick={logOut}
                 className='bg-gray-200 block text-center'>Logout</button>
             </li>

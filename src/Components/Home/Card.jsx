@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-const Card = ({ room }) => {
+const Card = ({ book }) => {
     return (
-        <Link to={`/book/${room?._id}`} className='col-span-1 cursor-pointer group'>
+        <Link to={`/book/${book?._id}`} className='col-span-1 cursor-pointer group'>
             <div className='flex flex-col gap-2 w-full'>
                 <div
                     className='
@@ -22,7 +22,7 @@ const Card = ({ room }) => {
                 group-hover:scale-110 
                 transition
               '
-                        src={room?.image}
+                        src={book?.image}
                         alt='Room'
                     />
                     <div
@@ -33,14 +33,13 @@ const Card = ({ room }) => {
             '
                     ></div>
                 </div>
-                <div className='flex'>
-                    <div className='font-semibold text-lg'>{room?.location}</div>
-                    <div className='font-semibold text-lg'>{room?.author_name}</div>
-                </div>
-                <div className='font-semibold text-lg'>{room?.rating}</div>
-                <div className='font-light text-neutral-500'>{room?.description}</div>
+                <div className='flex justify-between'>
+                    <div className='font-semibold text-lg'>{book?.author_name}</div>
+                    <div className='font-semibold text-lg bg-orange-300 rounded-lg w-8 p-1 text-center'>{book?.rating}*</div>
+                </div> 
+                <div className='font-light text-neutral-500'>{book?.title}</div>
                 <div className='flex flex-row items-center gap-1'>
-                    <div className='font-semibold'>Quantity {room?.quantity}</div>
+                    <div className='font-semibold'>Quantity: {book?.quantity}</div>
                     <div className='font-light'>books</div>
                 </div>
             </div>

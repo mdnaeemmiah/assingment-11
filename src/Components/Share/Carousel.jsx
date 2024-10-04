@@ -5,9 +5,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import img1 from '../../assets/carousel1.jpg';
-import img2 from '../../assets/carousel2.jpg';
-import img3 from '../../assets/carousel3.jpg';
+import img1 from '../../assets/img1.jpg';
+import img2 from '../../assets/img2.jpg';
+import img3 from '../../assets/istockphoto-1722534964-612x612.jpg';
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
@@ -33,13 +33,13 @@ export default function Carousel() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <Slider image={img1} text='Get your Web Development Projects Done in minutes'></Slider>
+          <Slider image={img1} text='A long, fictional narrative story'></Slider>
         </SwiperSlide>
         <SwiperSlide>
-          <Slider image={img2} text='Get your Graphics Design Projects Done in minutes'></Slider>
+          <Slider image={img2} text='The study of past events and societies'></Slider>
         </SwiperSlide>
         <SwiperSlide>
-          <Slider image={img3} text='Get your Digital Marketing Projects Done in minutes'></Slider>
+          <Slider image={img3} text='A rhythmic, expressive form of writing'></Slider>
         </SwiperSlide>
 
       </Swiper>

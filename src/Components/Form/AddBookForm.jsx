@@ -1,8 +1,6 @@
 import { categories } from '../Categories/CategoriesData'
 import { TbFidgetSpinner } from 'react-icons/tb'
 const AddBookForm = ({
-  dates,
-  handleDates,
   handleSubmit,
   setImagePreview,
   imagePreview,
@@ -17,26 +15,12 @@ const AddBookForm = ({
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-10'>
           <div className='space-y-6'>
             <div className='space-y-1 text-sm'>
-              <label htmlFor='location' className='block text-gray-600'>
-                Location
-              </label>
-              <input
-                className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
-                name='location'
-                id='location'
-                type='text'
-                placeholder='Location'
-                required
-              />
-            </div>
-
-            <div className='space-y-1 text-sm'>
               <label htmlFor='category' className='block text-gray-600'>
                 Category
               </label>
               <select
                 required
-                className='w-full px-4 py-3 border-rose-300 focus:outline-rose-500 rounded-md'
+                className='w-full px-4 py-3 border-green-300 focus:outline-green-500 rounded-md'
                 name='category'
               >
                 {categories.map(category => (
@@ -46,14 +30,6 @@ const AddBookForm = ({
                 ))}
               </select>
             </div>
-
-            <div className='space-y-1'>
-              <label htmlFor='location' className='block text-gray-600'>
-                Select Availability Range
-              </label>
-              {/* Calender */}
-             
-            </div>
           </div>
           <div className='space-y-6'>
             <div className='space-y-1 text-sm'>
@@ -61,7 +37,7 @@ const AddBookForm = ({
                 Title
               </label>
               <input
-                className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
+                className='w-full px-4 py-3 text-gray-800 border border-green-300 focus:outline-green-500 rounded-md '
                 name='title'
                 id='title'
                 type='text'
@@ -83,7 +59,7 @@ const AddBookForm = ({
                       accept='image/*'
                       hidden
                     />
-                    <div className='bg-rose-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-rose-500'>
+                    <div className='bg-green-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-rose-500'>
                       {/* {imageText} */}
                       {imageText.length > 20
                         ? imageText.split('.')[0].slice(0, 15) +
@@ -99,30 +75,30 @@ const AddBookForm = ({
               </div>
             </div>
             <div className='flex justify-between gap-2'>
+            
               <div className='space-y-1 text-sm'>
-                <label htmlFor='price' className='block text-gray-600'>
-                  Price
+                <label htmlFor='guest' className='block text-gray-600'>
+                Rating
                 </label>
                 <input
-                  className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
-                  name='price'
-                  id='price'
+                  className='w-full px-4 py-3 text-gray-800 border border-green-300 focus:outline-green-500 rounded-md '
+                  name='rating'
+                  id='guest'
                   type='number'
-                  placeholder='Price'
+                  placeholder='rating'
                   required
                 />
               </div>
-
               <div className='space-y-1 text-sm'>
                 <label htmlFor='guest' className='block text-gray-600'>
-                  Total guest
+                Quantity
                 </label>
                 <input
-                  className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
-                  name='total_guest'
+                  className='w-full px-4 py-3 text-gray-800 border border-green-300 focus:outline-green-500 rounded-md '
+                  name='quantity'
                   id='guest'
                   type='number'
-                  placeholder='Total guest'
+                  placeholder='quantity'
                   required
                 />
               </div>
@@ -131,28 +107,14 @@ const AddBookForm = ({
             <div className='flex justify-between gap-2'>
               <div className='space-y-1 text-sm'>
                 <label htmlFor='bedrooms' className='block text-gray-600'>
-                  Bedrooms
+                Author Name
                 </label>
                 <input
-                  className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
-                  name='bedrooms'
+                  className=' w-96 px-4 py-3 text-gray-800 border border-green-300 focus:outline-green-500 rounded-md '
+                  name='author_name'
                   id='bedrooms'
-                  type='number'
-                  placeholder='Bedrooms'
-                  required
-                />
-              </div>
-
-              <div className='space-y-1 text-sm'>
-                <label htmlFor='bathrooms' className='block text-gray-600'>
-                  Bathrooms
-                </label>
-                <input
-                  className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
-                  name='bathrooms'
-                  id='bathrooms'
-                  type='number'
-                  placeholder='Bathrooms'
+                  type='text'
+                  placeholder='author_name'
                   required
                 />
               </div>
@@ -165,7 +127,7 @@ const AddBookForm = ({
 
               <textarea
                 id='description'
-                className='block rounded-md focus:rose-300 w-full h-32 px-4 py-3 text-gray-800  border border-rose-300 focus:outline-rose-500 '
+                className='block rounded-md focus:green-300 w-full h-32 px-4 py-3 text-gray-800  border border-green-300 focus:outline-rose-500 '
                 name='description'
               ></textarea>
             </div>
@@ -175,7 +137,7 @@ const AddBookForm = ({
         <button
           disabled={loading}
           type='submit'
-          className='w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-rose-500'
+          className='w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-green-500'
         >
           {loading ? (
             <TbFidgetSpinner className='animate-spin m-auto' />

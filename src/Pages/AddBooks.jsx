@@ -9,6 +9,7 @@ import { imageUpload } from '../api/utily'
 import useAuth from '../hooks/useAuth'
 import useAxiosSecure from '../hooks/useAxiosSecure'
 
+
 const AddBooks = () => {
   const navigate = useNavigate()
   const axiosSecure = useAxiosSecure()
@@ -16,26 +17,16 @@ const AddBooks = () => {
   const { user } = useAuth()
   const [imagePreview, setImagePreview] = useState()
   const [imageText, setImageText] = useState('Upload Image')
-  const [dates, setDates] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
-    key: 'selection',
-  })
-
-  //Date range handler
-  const handleDates = item => {
-    setDates(item.selection)
-  }
-
+  
   const { mutateAsync } = useMutation({
-    mutationFn: async roomData => {
-      const { data } = await axiosSecure.post(`/book`, roomData)
+    mutationFn: async bookData => {
+      const { data } = await axiosSecure.post(`/book`, bookData)
       return data
     },
     onSuccess: () => {
       console.log('Data Saved Successfully')
-      toast.success('Room Added Successfully!')
-      navigate('/')
+      toast.success('Book Added Successfully!')
+      navigate('/listing-books')
       setLoading(false)
     },
   })
@@ -45,15 +36,12 @@ const AddBooks = () => {
     e.preventDefault()
     setLoading(true)
     const form = e.target
-    const location = form.location.value
     const category = form.category.value
     const title = form.title.value
-    const to = dates.endDate
-    const from = dates.startDate
-    const price = form.price.value
-    const guests = form.total_guest.value
-    const bathrooms = form.bathrooms.value
     const description = form.description.value
+    const author_name = form.author_name.value
+    const quantity = form.quantity.value
+    const rating = form.rating.value
     const bedrooms = form.bedrooms.value
     const image = form.image.files[0]
 
@@ -65,24 +53,21 @@ const AddBooks = () => {
 
     try {
       const image_url = await imageUpload(image)
-      const roomData = {
-        location,
+      const bookData = {
         category,
         title,
-        to,
-        from,
-        price,
-        guests,
-        bathrooms,
+        rating,
+        author_name,
+        quantity,
         bedrooms,
         host,
         description,
         image: image_url,
       }
-      console.table(roomData)
+      console.table(bookData)
 
       //   Post request to server
-      await mutateAsync(roomData)
+      await mutateAsync(bookData)
     } catch (err) {
       console.log(err)
       toast.error(err.message)
@@ -104,8 +89,6 @@ const AddBooks = () => {
 
       {/* Form */}
       <AddBookForm
-        dates={dates}
-        handleDates={handleDates}
         handleSubmit={handleSubmit}
         setImagePreview={setImagePreview}
         imagePreview={imagePreview}

@@ -9,7 +9,7 @@ const PrivateRoutes = ({children}) => {
 
     if(loading) return <p>Loading.........</p>
     if(user) return children
-    return <Navigate to='/' state={location.pathname} replace={true}></Navigate>
+    return <Navigate to='/login' state={location.pathname} replace={true}></Navigate>
 };
 
-export default PrivateRoutes;
+export default PrivateRoutes; 
