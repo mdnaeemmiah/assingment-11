@@ -1,35 +1,17 @@
 /* eslint-disable react/prop-types */
 import { categories } from '../Categories/CategoriesData'
 
-const UpdateRoomForm = ({
+const UpdateBookForm = ({
   handleSubmit,
   handleImage,
-  setRoomData,
-  roomData,
-  handleDates,
-  dates,
+  setBookData,
+  bookData,
 }) => {
   return (
     <div className='w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50'>
       <form onSubmit={handleSubmit}>
         <div className='grid grid-cols-1 gap-10'>
-          <div className='space-y-1 text-sm'>
-            <label htmlFor='location' className='block text-gray-600'>
-              Location
-            </label>
-            <input
-              className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
-              name='location'
-              id='location'
-              type='text'
-              value={roomData?.location}
-              onChange={e =>
-                setRoomData({ ...roomData, location: e.target.value })
-              }
-              placeholder='Location'
-              required
-            />
-          </div>
+
           <div className='space-y-1 text-sm'>
             <label htmlFor='title' className='block text-gray-600'>
               Title
@@ -39,9 +21,9 @@ const UpdateRoomForm = ({
               name='title'
               id='title'
               type='text'
-              value={roomData?.title}
+              value={bookData?.title}
               onChange={e =>
-                setRoomData({ ...roomData, title: e.target.value })
+                setBookData({ ...bookData, title: e.target.value })
               }
               placeholder='Title'
               required
@@ -54,9 +36,9 @@ const UpdateRoomForm = ({
             </label>
             <select
               required
-              value={roomData?.category}
+              value={bookData?.category}
               onChange={e =>
-                setRoomData({ ...roomData, category: e.target.value })
+                setBookData({ ...bookData, category: e.target.value })
               }
               className='w-full px-4 py-3 border-rose-300 focus:outline-rose-500 rounded-md'
               name='category'
@@ -67,16 +49,6 @@ const UpdateRoomForm = ({
                 </option>
               ))}
             </select>
-          </div>
-
-          <div className='space-y-1'>
-            <label htmlFor='location' className='block text-gray-600'>
-              Select Availability Range
-            </label>
-            <div className='flex justify-center pt-2'>
-              {/* Calender */}
-           
-            </div>
           </div>
 
           <div className=' p-4 bg-white w-full  m-auto rounded-lg'>
@@ -99,77 +71,62 @@ const UpdateRoomForm = ({
               </div>
             </div>
           </div>
+
+
           <div className='flex justify-between gap-2'>
-            <div className='space-y-1 text-sm'>
-              <label htmlFor='price' className='block text-gray-600'>
-                Price
-              </label>
-              <input
-                className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
-                name='price'
-                id='price'
-                value={roomData?.price}
-                onChange={e =>
-                  setRoomData({ ...roomData, price: e.target.value })
-                }
-                type='number'
-                placeholder='Price'
-                required
-              />
-            </div>
 
             <div className='space-y-1 text-sm'>
               <label htmlFor='guest' className='block text-gray-600'>
-                Total guest
+                Rating
               </label>
               <input
-                className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
-                name='total_guest'
-                id='guest'
-                value={roomData?.guests}
+                className='w-full px-4 py-3 text-gray-800 border border-green-300 focus:outline-green-500 rounded-md '
+                name='rating'
+                id='rating'
+                value={bookData?.price}
                 onChange={e =>
-                  setRoomData({ ...roomData, guests: e.target.value })
+                  setBookData({ ...bookData, price: e.target.value })
                 }
                 type='number'
-                placeholder='Total guest'
+                placeholder='rating'
+                required
+              />
+            </div>
+            <div className='space-y-1 text-sm'>
+              <label htmlFor='guest' className='block text-gray-600'>
+                Quantity
+              </label>
+              <input
+                className='w-full px-4 py-3 text-gray-800 border border-green-300 focus:outline-green-500 rounded-md '
+                name='quantity'
+                id='guest'
+                value={bookData?.guests}
+                onChange={e =>
+                  setBookData({ ...bookData, guests: e.target.value })
+                }
+                type='number'
+                placeholder='quantity'
                 required
               />
             </div>
           </div>
 
           <div className='flex justify-between gap-2'>
-            <div className='space-y-1 text-sm'>
-              <label htmlFor='bedrooms' className='block text-gray-600'>
-                Bedrooms
-              </label>
-              <input
-                className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
-                name='bedrooms'
-                id='bedrooms'
-                value={roomData?.bedrooms}
-                onChange={e =>
-                  setRoomData({ ...roomData, bedrooms: e.target.value })
-                }
-                type='number'
-                placeholder='Bedrooms'
-                required
-              />
-            </div>
 
             <div className='space-y-1 text-sm'>
-              <label htmlFor='bathrooms' className='block text-gray-600'>
-                Bathrooms
+              <label htmlFor='bedrooms' className='block text-gray-600'>
+                Author Name
               </label>
               <input
-                className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
-                name='bathrooms'
-                id='bathrooms'
-                value={roomData?.bathrooms}
+                className=' w-96 px-4 py-3 text-gray-800 border border-green-300 focus:outline-green-500 rounded-md '
+                name='author_name'
+                id='bedrooms'
+                value={bookData?.bathrooms}
                 onChange={e =>
-                  setRoomData({ ...roomData, bathrooms: e.target.value })
+                  setBookData({ ...bookData, bathrooms: e.target.value })
                 }
-                type='number'
-                placeholder='Bathrooms'
+                type='text'
+                placeholder='author_name'
                 required
               />
             </div>
@@ -182,9 +139,9 @@ const UpdateRoomForm = ({
 
             <textarea
               id='description'
-              value={roomData?.description}
+              value={bookData?.description}
               onChange={e =>
-                setRoomData({ ...roomData, description: e.target.value })
+                setBookData({ ...bookData, description: e.target.value })
               }
               className='block rounded-md focus:rose-300 w-full h-32 px-4 py-3 text-gray-800  border border-rose-300 focus:outline-rose-500 '
               name='description'
@@ -203,4 +160,4 @@ const UpdateRoomForm = ({
   )
 }
 
-export default UpdateRoomForm
+export default UpdateBookForm

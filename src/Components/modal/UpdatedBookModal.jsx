@@ -12,11 +12,12 @@ import useAxiosSecure from '../../hooks/useAxiosSecure'
 import toast from 'react-hot-toast'
 import BorrowModal from '../Form/BorrowModal'
 import useAuth from '../../hooks/useAuth'
+import UpdateBookForm from '../Form/UpdateBookForm'
 
 const UpdateBookModal = ({ setIsEditModalOpen, isOpen, book, refetch }) => {
   const axiosSecure = useAxiosSecure()
   const [loading, setLoading] = useState(false)
-  const [roomData, setRoomData] = useState(book)
+  const [bookData, setBookData] = useState(book)
   const { user } = useAuth();
 
   const handleSubmit = async e => {
@@ -73,13 +74,14 @@ const UpdateBookModal = ({ setIsEditModalOpen, isOpen, book, refetch }) => {
                   as='h3'
                   className='text-lg font-medium text-center leading-6 text-gray-900'
                 >
-                  User Information
+                  Updated Book
                 </DialogTitle>
                 <div className='mt-2 w-full'>
                   {/* Update room form */}
-                  <BorrowModal
+                  <UpdateBookForm
                     handleSubmit={handleSubmit}
-                    setRoomData={setRoomData}
+                    setBookData={setBookData}
+                    bookData={bookData}
                   />
                 </div>
                 <hr className='mt-8 ' />

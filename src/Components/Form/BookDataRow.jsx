@@ -10,7 +10,9 @@ import {
 
 import DeleteModal from '../modal/DeleteModal'
 import UpdateRoomModal from '../modal/UpdatedBookModal'
-const BookDataRow = ({ room, handleDelete, refetch }) => {
+// eslint-disable-next-line react/prop-types
+const BookDataRow = ({ book, handleDelete, refetch }) => {
+  console.log(book);
   // for delete modal
   const [isOpen, setIsOpen] = useState(false)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
@@ -27,33 +29,21 @@ const BookDataRow = ({ room, handleDelete, refetch }) => {
             <div className='block relative'>
               <img
                 alt='profile'
-                src={room?.image}
+                src={book?.image}
                 className='mx-auto object-cover rounded h-10 w-15 '
               />
             </div>
           </div>
           <div className='ml-3'>
-            <p className='text-gray-900 whitespace-no-wrap'>{room?.title}</p>
+            <p className='text-gray-900 whitespace-no-wrap'>{book?.title}</p>
           </div>
         </div>
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <p className='text-gray-900 whitespace-no-wrap'>{room?.location}</p>
+        <p className='text-gray-900 whitespace-no-wrap'>${book?.price}</p>
       </td>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <p className='text-gray-900 whitespace-no-wrap'>${room?.price}</p>
-      </td>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <p className='text-gray-900 whitespace-no-wrap'>
-          {format(new Date(room?.from), 'P')}
-        </p>
-      </td>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <p className='text-gray-900 whitespace-no-wrap'>
-          {format(new Date(room?.to), 'P')}
-        </p>
-      </td>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+     
+     <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <button
           onClick={() => setIsOpen(true)}
           className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
@@ -64,14 +54,14 @@ const BookDataRow = ({ room, handleDelete, refetch }) => {
           ></span>
           <span className='relative'>Delete</span>
         </button>
-        {/* Delete modal */}
+    
         <DeleteModal
           isOpen={isOpen}
           closeModal={closeModal}
           handleDelete={handleDelete}
-          id={room?._id}
-        />
-      </td>
+          id={book?._id}
+        /> 
+      </td> 
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <button
           onClick={() => setIsEditModalOpen(true)}
@@ -83,11 +73,11 @@ const BookDataRow = ({ room, handleDelete, refetch }) => {
           ></span>
           <span className='relative'>Update</span>
         </button>
-        {/* Update Modal */}
+       
         <UpdateRoomModal
           isOpen={isEditModalOpen}
           setIsEditModalOpen={setIsEditModalOpen}
-          room={room}
+          book={book}
           refetch={refetch}
         />
       </td>

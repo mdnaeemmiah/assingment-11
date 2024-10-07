@@ -5,7 +5,7 @@ import useAuth from "../../hooks/useAuth"
 
 const BorrowModal = ({
   handleSubmit,
-  setRoomData,
+  setBookData,
 }) => {
   const {user} = useAuth();
 
@@ -24,7 +24,7 @@ const BorrowModal = ({
               type='text'
               value={user?.displayName}
               onChange={e =>
-                setRoomData({ user, name: e.target.value })
+                setBookData({ user, name: e.target.value })
               }
               placeholder='name'
               required
@@ -41,7 +41,7 @@ const BorrowModal = ({
               type='text'
               value={user?.email}
               onChange={e =>
-                setRoomData({ user, email: e.target.value })
+                setBookData({ user, email: e.target.value })
               }
               placeholder='email'
               required
@@ -60,3 +60,4 @@ const BorrowModal = ({
 }
 
 export default BorrowModal
+

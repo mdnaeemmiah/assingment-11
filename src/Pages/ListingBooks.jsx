@@ -10,7 +10,7 @@ const ListingBooks = () => {
   const axiosSecure = useAxiosSecure()
   //   Fetch Rooms Data
   const {
-    data: rooms = [],
+    data: books = [],
     isLoading,
     refetch,
   } = useQuery({
@@ -25,7 +25,7 @@ const ListingBooks = () => {
   //   delete
   const { mutateAsync } = useMutation({
     mutationFn: async id => {
-      const { data } = await axiosSecure.delete(`/room/${id}`)
+      const { data } = await axiosSecure.delete(`/book/${id}`)
       return data
     },
     onSuccess: data => {
@@ -44,6 +44,7 @@ const ListingBooks = () => {
       console.log(err)
     }
   }
+  
   if (isLoading) return <LoadingSpinner />
   return (
     <>
@@ -68,25 +69,7 @@ const ListingBooks = () => {
                       scope='col'
                       className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
                     >
-                      Location
-                    </th>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
                       Price
-                    </th>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
-                      From
-                    </th>
-                    <th
-                      scope='col'
-                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
-                    >
-                      To
                     </th>
                     <th
                       scope='col'
@@ -105,10 +88,10 @@ const ListingBooks = () => {
                 <tbody>
                   {/* Room row data */}
 
-                  {rooms.map(room => (
+                  {books.map(book => (
                     <BookDataRow
-                    key={room._id}
-                    room={room}
+                    key={book._id}
+                    book={book}
                     handleDelete={handleDelete}
                     refetch={refetch}
                     ></BookDataRow>

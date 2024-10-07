@@ -8,6 +8,13 @@ import useAxiosCommon from '../../hooks/useAxiosCommon'
 import { useState } from 'react'
 import UpdateRoomModal from '../modal/UpdatedBookModal'
 import { Helmet } from 'react-helmet-async'
+import BorrowModal from '../Form/BorrowModal'
+import {
+  Description,
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+} from '@headlessui/react'
 
 const RoomDetails = () => {
   const { id } = useParams()
@@ -97,12 +104,7 @@ const RoomDetails = () => {
                 <span className='relative text-2xl bg-orange-200 p-2 rounded-lg'>Borrow Book</span>
               </button>
               {/* Update Modal */}
-              <UpdateRoomModal
-                isOpen={isEditModalOpen}
-                setIsEditModalOpen={setIsEditModalOpen}
-                book={book}
-                refetch={refetch}
-              />
+              
             </div>
           </div>
         </div>

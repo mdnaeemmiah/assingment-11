@@ -42,7 +42,6 @@ const AddBooks = () => {
     const author_name = form.author_name.value
     const quantity = form.quantity.value
     const rating = form.rating.value
-    const bedrooms = form.bedrooms.value
     const image = form.image.files[0]
 
     const host = {
@@ -59,7 +58,6 @@ const AddBooks = () => {
         rating,
         author_name,
         quantity,
-        bedrooms,
         host,
         description,
         image: image_url,
