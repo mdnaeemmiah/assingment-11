@@ -13,7 +13,7 @@ const Books = () => {
   const [params, setParams] = useSearchParams()
   const category = params.get('category')
 
-  console.log(category)
+  
   const { data: books = [], isLoading } = useQuery({
     queryKey: ['books', category],
     queryFn: async () => {
@@ -39,7 +39,7 @@ const Books = () => {
         <div className='flex items-center justify-center min-h-[calc(100vh-300px)]'>
           <Heading
             center={true}
-            title='No Rooms Available In This Category!'
+            title='No Books Available In This Category!'
             subtitle='Please Select Other Categories.'
           />
         </div>

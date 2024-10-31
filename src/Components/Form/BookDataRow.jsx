@@ -34,16 +34,19 @@ const BookDataRow = ({ book, handleDelete, refetch }) => {
               />
             </div>
           </div>
-          <div className='ml-3'>
-            <p className='text-gray-900 whitespace-no-wrap'>{book?.title}</p>
-          </div>
+
         </div>
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <p className='text-gray-900 whitespace-no-wrap'>${book?.price}</p>
+        <div className='ml-3'>
+          <p className='text-gray-900 whitespace-no-wrap'>{book?.author_name}</p>
+        </div>
       </td>
-     
-     <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+        <p className='text-gray-900 whitespace-no-wrap'>{book?.category}</p>
+      </td>
+
+      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <button
           onClick={() => setIsOpen(true)}
           className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
@@ -54,14 +57,14 @@ const BookDataRow = ({ book, handleDelete, refetch }) => {
           ></span>
           <span className='relative'>Delete</span>
         </button>
-    
+
         <DeleteModal
           isOpen={isOpen}
           closeModal={closeModal}
           handleDelete={handleDelete}
           id={book?._id}
-        /> 
-      </td> 
+        />
+      </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <button
           onClick={() => setIsEditModalOpen(true)}
@@ -73,7 +76,7 @@ const BookDataRow = ({ book, handleDelete, refetch }) => {
           ></span>
           <span className='relative'>Update</span>
         </button>
-       
+
         <UpdateRoomModal
           isOpen={isEditModalOpen}
           setIsEditModalOpen={setIsEditModalOpen}

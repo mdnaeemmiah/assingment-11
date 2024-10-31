@@ -15,6 +15,8 @@ import {
   DialogPanel,
   DialogTitle,
 } from '@headlessui/react'
+import BookRoomModal from '../modal/BookRoomModal'
+import DeleteModal from '../modal/DeleteModal'
 
 const RoomDetails = () => {
   const { id } = useParams()
@@ -40,9 +42,9 @@ const RoomDetails = () => {
   if (isLoading) return <LoadingSpinner />
   console.log(book)
   return (
-    
+
     <Container>
-       <Helmet>
+      <Helmet>
         <title>Book Details</title>
       </Helmet>
 
@@ -79,8 +81,8 @@ const RoomDetails = () => {
                 </div>
                 <div
                   className='flex flex-row  items-center   gap-4 font-light text-neutral-500'>
-                  <div>{book?.rating} Rating</div>
-                  <div>{book?.quantity} Quantity</div>
+                  <div className='bg-orange-300 p-2 rounded-lg text-black'>{book?.rating} Rating</div>
+                  <div className='bg-orange-300 p-2 rounded-lg text-black'>{book?.quantity} Quantity</div>
                 </div>
               </div>
 
@@ -92,19 +94,23 @@ const RoomDetails = () => {
               <hr />
             </div>
             {/* aslikdhfksdj */}
-            <div className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+            <div className='px-5 py-5 border-b border-gray-200 bg-white text-sm flex justify-center'>
+        
               <button
-                onClick={() => setIsEditModalOpen(true)}
+                onClick={() => setIsOpen(true)}
                 className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
               >
-                <span
+              <span
                   aria-hidden='true'
                   className='absolute inset-0  rounded-full'
                 ></span>
                 <span className='relative text-2xl bg-orange-200 p-2 rounded-lg'>Borrow Book</span>
               </button>
-              {/* Update Modal */}
-              
+
+              <BookRoomModal
+                isOpen={isOpen}
+                closeModal={closeModal}
+              />
             </div>
           </div>
         </div>
